@@ -22,21 +22,15 @@
     <li align="center" class="pt-1 align-baseline animate2 slideIn">
         <input class="form text-light" placeholder="Name*" #accountName/>
     </li>
+    <li align="center" class="pt-1 align-baseline animate2 slideIn">
+        <input class="form text-light" placeholder="AccountType*" #accountType/>
+    </li>
     <li align="center" class="pt-2 pb-1 animate3 slideIn">
         <input class="form text-light" placeholder="Balance*" type="number" #accountBalance/>
     </li>
-    <div align="center" id="accountType">
-        <div class="text-muted pt-2 animate3 slideIn drpdwn">
-            <button id="btnGroupDrop" type="button" class="btn text-muted dropdown-toggle plus" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" #newAccountType value="{{accountTypeId}}">
-        {{accountTypeName}}
-    </button>
-            <div class="dropdown-menu plus text-light dropright" aria-labelledby="accountTypebtn" id="accountTypedrp">
-                <a *ngFor="let accountType of accountTypes" [class.selected]="accountType === selectedAccountType" (click)="onSelectAccountType(accountType)" class="dropdown-item ">{{accountType.description}}</a>
-            </div>
-        </div>
-    </div>
+
     <li align="center" class="pt-3 pb-3 animate4 slideIn">
-        <button class="plus text-light" (click)="add(accountName.value, accountBalance.value);">
+        <button class="plus text-light" (click)="add(accountName.value, accountType.value, accountBalance.value);">
     OK
 </button>
         <button class="plus text-muted" (click)="onClick();">

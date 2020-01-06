@@ -1,25 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { Account } from '../models/account';
-import {environment } from 'src/environments/environment';
+import { environment } from 'src/environments/environment'; export const apiUrl = environment.apiUrl;
 import { Accounttype } from '../models/accounttype';
 import { tap, catchError } from 'rxjs/operators';
-import { User } from '../models/User';
+import { User } from '../models/user';
 
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class AccountService {
   currentUser: User;
 
-  [x: string]: any;
-  apiUrl = environment.apiUrl;
-  private accountUrl = `${this.apiUrl}/account`;
+  @Inject(apiUrl) private apiUrl: string;
+  private accountUrl = `{this.apiUrl}/account`;
+  accounts:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  selectedAccounts:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+
+  httpOptions = {
+    headers: new HttpHeaders({'Content-Type' : 'application/json'})
+  }
+  
+  
   constructor(private http:HttpClient) { 
     // this.accountUrl = """;
     // this.accountUrl = '';
@@ -30,10 +35,9 @@ export class AccountService {
   }
 
   getAccounts(userId: number): Observable<Account[]> {
-    const url = `${this.accountUrl}/?userId=${userId}`;
-    return this.http.get<Account[]>(url)
-        .pipe(
-            tap(_ => this.log('Account Data')),
+    const url = `{this.accountUrl + }/?userId=${userId}`;
+    return this.http.get<Account[]>(this.accountUrl + userId, this.httpOptions)
+        .pipe(tap(_ => console.log('Account Data')),
             catchError(this.handleError<Account[]>('getAccounts', []))
         );
 }
@@ -44,8 +48,8 @@ export class AccountService {
     return this.http.get<Account[]>(this.apiUrl + "/api/accounts/user/" + userid);
   }
 
-  public createAccount(id:number, balance: number, openingDate:Date, accountTypeId:number,  userid: number, owner:string, acctName: string): Observable<Account>{
-    let newAccount: Account = {id: 0, balance: balance, openingDate:openingDate, accountTypeId:accountTypeId,  userid: userid, owner:owner, acctName:acctName}
+  public createAccount(id:number, balance: number, openingDate:Date, accountTypeId:number, accountType:string, userid: number, owner:string, acctName: string): Observable<Account>{
+    let newAccount: Account = {id: 0, balance: balance, openingDate:openingDate, accountTypeId:accountTypeId, accountType:accountType,  userid: userid, owner:owner, acctName:acctName}
     console.log("creating new account with userid:" + newAccount.id);
    return this.http.post<Account>(this.apiUrl + "/api/accounts", newAccount);
   }
@@ -68,7 +72,7 @@ private handleError<T>(operation = 'operation', result?: T) {
 
   addAccount(account: Account): Observable<Account> {
     return this.http.post<Account>(this.accountUrl, account, httpOptions).pipe(
-        tap((newAccount: Account) => this.log(`added account`)),
+        tap((newAccount: Account) => console.log(`added account`)),
         catchError(this.handleError<Account>('addAccount')));
 }
 
