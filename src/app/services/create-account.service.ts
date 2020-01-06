@@ -28,7 +28,14 @@ export class CreateAccountService {
 
   constructor(private http: HttpClient) { }
 
+
 //Add a new user to the database
+addUser(user: User): Observable<User>{
+  //console.log(apiUrl);
+  //console.log(this.registerUrl);
+  return this.http.post<User>(this.registerUrl, user, this.httpOptions).pipe(tap(data => console.log(data)), catchError(this.handleError<User>('addUser')));
+}
+
 
 
 getUserEmails(): Observable<string[]>{

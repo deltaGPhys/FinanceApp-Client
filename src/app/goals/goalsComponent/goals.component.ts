@@ -14,7 +14,9 @@ export class GoalsComponent implements OnInit {
  
   goals: SavingGoal;
   //allUserGoals : any;
-  userId : number = 5;
+  userId : number;
+  //getUser();
+
   allGoals: SavingGoal[];
   
 
@@ -25,11 +27,12 @@ export class GoalsComponent implements OnInit {
         //console.log(this.goals);
     //.subscribe(value => {this.allGoals = value; console.log(this.allGoals);});
     
-    this.goalService.updateSavingsGoals(this.userId);
+    //this.goalService.updateSavingsGoals(this.userId);
 
     this.goalService.getAllGoals()
     .subscribe(value => {this.allGoals = value; console.log(this.allGoals);});;
 
+  
   }
 
   ngOnInit() {

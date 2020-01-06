@@ -2,7 +2,7 @@ import { Injectable, Inject} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment'; export const apiUrl = environment.apiUrl;
 
-import { Observable, of } from 'rxjs';
+import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/User';
 
@@ -18,6 +18,7 @@ export class LoginService {
   private getUserByEmail : string = apiUrl + "/login/users/";
   loggedIn : boolean = false;
   user: User;
+  userToDisplay$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -37,7 +38,12 @@ export class LoginService {
     catchError(this.handleError<User>('verification', null)));
   }
 
-  //getUser
+
+  //This ties in with the userToDisplay Behavior Subject Above
+  updateLoggedInUser(user : User) {
+    this.userToDisplay$.next(user);
+    console.log(status)
+  }
 
 // getUser(id:number):Observable<User>{
 

@@ -36,6 +36,9 @@ import { RegisterUserComponent } from './login/register-user/register-user.compo
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 
+//import { DeleteAccountComponent } from './delete-account/delete-account.component';
+//import { AddAccountComponent } from './add-account/add-account.component';
+
 @NgModule({
   declarations: [
     AppComponent,

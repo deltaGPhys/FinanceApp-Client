@@ -14,6 +14,7 @@ export class AddGoalComponent implements OnInit {
   private createSavingGoalForm : FormGroup;
   private savingGoal: SavingGoal;
   private user: User;
+  date: string;
 
   constructor(private goalService: GoalServiceService, private router: Router) { 
     this.createSavingGoalForm = this.createFormGroup();
@@ -35,7 +36,7 @@ export class AddGoalComponent implements OnInit {
   }
 
   onSubmit() {
-    //if(this.checkForEmail(this.userEmails, this.userEmail)){
+    console.log(this.createSavingGoalForm.controls.endDate.value)
     let savingGoal : SavingGoal = new SavingGoal (
       null,
       this.createSavingGoalForm.controls.goalAmount.value,
@@ -45,13 +46,14 @@ export class AddGoalComponent implements OnInit {
       this.createSavingGoalForm.controls.description.value,
       );
       
-      console.log(this.createSavingGoalForm.controls.endDate.value)
+      this.goalService.addGoal(savingGoal)
+        .subscribe(data => {this.savingGoal = data;});
+        
       console.log(this.savingGoal);
 
       this.goalService.getAllGoals().subscribe(data => (console.log(data)));      
 
-      this.goalService.addGoal(this.savingGoal)
-        .subscribe(data => {this.savingGoal = data;});
+      
 
       this.revert();
 

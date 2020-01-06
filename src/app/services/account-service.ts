@@ -5,7 +5,7 @@ import { Account } from '../models/account';
 import {environment } from 'src/environments/environment';
 import { Accounttype } from '../models/accounttype';
 import { tap, catchError } from 'rxjs/operators';
-import { User } from '../models/user';
+import { User } from '../models/User';
 
 
 const httpOptions = {

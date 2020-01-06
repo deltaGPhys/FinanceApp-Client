@@ -4,6 +4,7 @@ import {AccountService} from '../services/account-service';
 import {ActivatedRoute} from '@angular/router';
 import {Accounttype} from '../models/accounttype';
 
+
 @Component({
     selector: 'app-accounts',
     templateUrl: './accounts.component.html',

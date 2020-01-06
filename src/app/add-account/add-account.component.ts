@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user-service.service';
-import { User } from '../models/user';
+import { User } from '../models/User';
 import { AccountService } from '../services/account-service';
 import { Account } from '../models/account';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-add-account',
@@ -16,12 +17,11 @@ export class AddAccountComponent implements OnInit {
   createdAccount: Account;
   acctName: string;
 
-  constructor(private userService: UserService,
-    private accountService: AccountService) { }
+  constructor(private userService: UserService, private accountService: AccountService, private loginService: LoginService) { }
 
 
   ngOnInit() {
-    this.currentUser = this.userService.getUser();
+    this.loginService.userToDisplay$.subscribe(data => this.currentUser = data);
   }
 
   makeNewAccount(){

@@ -22,7 +22,8 @@ export class GoalServiceService {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+   }
 
   //Add a new goal to the database
   addGoal(savingGoal: SavingGoal): Observable<SavingGoal>{
