@@ -44,20 +44,19 @@ export class AccountsComponent implements OnInit {
       this.createAccount = !this.createAccount;
     }
 
-    // add(name: string, balance: number, accountTypeId: number, userId: number): void {
-    //     name = name.trim();
+    add(id: number, balance: number, openingDate: number, accountTypeId: number, userId: number, owner: string, acctName: string): void {
 
-    //     if (!this.validDeposit(name, balance)) {
-    //         return;
-    //     }
-    //     accountTypeId = this.accountTypeId;
-    //     userId = this.userId;
-    //     this.accountService.addAccount({name, balance, accountTypeId, userId} as Account)
-    //         .subscribe(
-    //             account => {this.accounts.push(account);}
-    //         );
-    //     this.createAccount = false;
-    // }
+        if (!this.validDeposit(name, balance)) {
+            return;
+        }
+        accountTypeId = this.accountTypeId;
+        userId = this.userId;
+        this.accountService.addAccount({id, balance, openingDate, accountTypeId, userId, owner, acctName} as Account)
+            .subscribe(
+                account => {this.accounts.push(account);}
+            );
+        this.createAccount = false;
+    }
 
 
     onSelectAccountType(accountType: Accounttype) {
