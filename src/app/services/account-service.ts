@@ -38,15 +38,17 @@ export class AccountService {
         );
 }
 
-  public getAccountsByUser(userid: string): Observable<Account[]>{
+  public getAccountsByUser(userid: string
+    
+    ): Observable<Account[]>{
     return this.http.get<Account[]>(this.apiUrl + "/api/accounts/user/" + userid);
   }
 
-  // public createAccount(balance: number, userid: number, acctName: string): Observable<Account>{
-  //   let newAccount: Account = {id: 0, balance: balance, userId: userid, acctName:acctName}
-  //   console.log("creating new account with userid:" + newAccount.id);
-  //  return this.http.post<Account>(this.apiUrl + "/api/accounts", newAccount);
-  // }
+  public createAccount(id:number, balance: number, openingDate:Date, accountTypeId:number,  userid: number, owner:string, acctName: string): Observable<Account>{
+    let newAccount: Account = {id: 0, balance: balance, openingDate:openingDate, accountTypeId:accountTypeId,  userid: userid, owner:owner, acctName:acctName}
+    console.log("creating new account with userid:" + newAccount.id);
+   return this.http.post<Account>(this.apiUrl + "/api/accounts", newAccount);
+  }
 
   getAccountTypes(): Observable<Accounttype[]> {
     const url = `${this.apiUrl}/accounttype`;
