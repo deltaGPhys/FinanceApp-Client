@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { UserService } from './services/user-service.service'
+import { LoginService } from './services/login.service';
 
 
 @Component({
@@ -14,8 +15,8 @@ export class AppComponent {
   isLoggedIn: boolean;
   
 
-  constructor(private userService: UserService) {
-    this.userService.isLoggedIn.subscribe(data => this.isLoggedIn = data);
+  constructor(private loginService: LoginService) {
+    this.loginService.isLoggedIn.subscribe(data => this.isLoggedIn = data);
   }
 
   ngOnInit() {

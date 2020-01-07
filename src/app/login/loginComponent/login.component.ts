@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { LoginService} from 'src/app/services/login.service';
-import {CreateAccountService} from '../../services/create-account.service'
-import {User} from '../../models/User';
+import { CreateAccountService } from '../../services/create-account.service'
+import { User } from '../../models/User';
 import { Router } from '@angular/router';
 import { delay, subscribeOn } from 'rxjs/operators';
 import { Observable, of, BehaviorSubject } from 'rxjs';
@@ -16,7 +16,7 @@ import { UserService } from '../../services/user-service.service';
 })
 export class LoginComponent implements OnInit {
   
-  private loginForm: FormGroup;
+  loginForm: FormGroup;
   public userEmail: string;
   private userPassword: string;
   private userEmails: any;
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginTest(): void {
-    this.userService.updateLoginStatus(true);
+    this.loginService.updateLoginStatus(true);
   }
   
   onSubmit()  {
@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
     console.log(this.userPassword);
     if(this.validUserName(this.allEmails, this.userEmail)){
       this.loginService.verifyUser(this.userEmail,this.userPassword)
-          .subscribe(data => {this.userService.updateLoginStatus(data); console.log(data);});
+          .subscribe(data => {this.loginService.updateLoginStatus(true); this.loginService.updateLoggedInUser(data); console.log(data);});
       this.loginService.findUserByEmail(this.userEmail)
           .subscribe(info =>{this.myUser = info; console.log("Saved User: " + this.myUser);});
       

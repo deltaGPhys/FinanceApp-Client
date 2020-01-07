@@ -16,7 +16,7 @@ export class RegisterUserComponent implements OnInit {
   userCheck: any;
   private user: User;
   allEmails: string[] = [];
-  private createUserForm: FormGroup;
+  createUserForm: FormGroup;
   private userEmail: string = "";
   //private allUsers: User [];
   emailAlreadyTaken : boolean = false;

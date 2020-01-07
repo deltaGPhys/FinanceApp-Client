@@ -3,17 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { Account } from '../models/account';
 import { environment } from 'src/environments/environment'; export const apiUrl = environment.apiUrl;
-import { Accounttype } from '../models/accounttype';
 import { tap, catchError } from 'rxjs/operators';
 import { User } from '../models/user';
+// import{Transactions} from '../transactions'
 
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
+
 @Injectable({providedIn: 'root'})
+
 export class AccountService {
-  currentUser: User;
+
+  private accountsUrl: string;
 
   @Inject(apiUrl) private apiUrl: string;
   private accountUrl = `{this.apiUrl}/account`;
@@ -26,59 +26,53 @@ export class AccountService {
   
   
   constructor(private http:HttpClient) { 
-    // this.accountUrl = """;
-    // this.accountUrl = '';
+     this.accountUrl = 'http://localhost:8080/API';
   }
 
-  public getAccount(): Observable<Account>{
-    return this.http.get<Account>(this.accountUrl + "/1")
+  public getCheckingAccount(userId:number): Observable<Account[]> {
+    return this.http.get<Account[]>(this.accountsUrl +'/accounts/checking/id/' + userId);
+  }
+  public getSavingsAccount(userId:number): Observable<Account[]> {
+    return this.http.get<Account[]>(this.accountsUrl +'/accounts/savings/id/' + userId);
+  }
+  public getCheckingAccountsForUser(userId: number): Observable<Account> {
+    return this.http.get<Account>(this.accountsUrl + '/accounts/checking/' + userId);
   }
 
-  getAccounts(userId: number): Observable<Account[]> {
-    const url = `{this.accountUrl + }/?userId=${userId}`;
-    return this.http.get<Account[]>(this.accountUrl + userId, this.httpOptions)
-        .pipe(tap(_ => console.log('Account Data')),
-            catchError(this.handleError<Account[]>('getAccounts', []))
-        );
-}
+  public getSavingsAccountsForUser(userId: number): Observable<Account> {
+    return this.http.get<Account>(this.accountsUrl + '/accounts/savings/' + userId);
+  }
+ 
+  public save(accounts: Account) {
+    return this.http.post<Account>(this.accountsUrl +'/accounts/dummy_created', accounts);
 
-  public getAccountsByUser(userid: string
-    
-    ): Observable<Account[]>{
-    return this.http.get<Account[]>(this.apiUrl + "/api/accounts/user/" + userid);
+  }
+  public closeChecking(id: Number) {
+    return this.http.delete<Account[]>(this.accountsUrl + '/accounts/'+ id);
   }
 
-  public createAccount(id:number, balance: number, openingDate:Date, accountTypeId:number, accountType:string, userid: number, owner:string, acctName: string): Observable<Account>{
-    let newAccount: Account = {id: 0, balance: balance, openingDate:openingDate, accountTypeId:accountTypeId, accountType:accountType,  userid: userid, owner:owner, acctName:acctName}
-    console.log("creating new account with userid:" + newAccount.id);
-   return this.http.post<Account>(this.apiUrl + "/api/accounts", newAccount);
+//   public closeSavings(id: Number) {
+//     return this.http.delete<Account[]>(this.accountsUrl + '/accounts/'+ id);
+// }
+//   public accountDeposit(transaction:Transactions){
+//     return this.http.put<Account>(this.accountsUrl+'/accounts/deposit/',transaction);
+//   }
+//   public accountWithdraw(transaction:Transactions){
+//     return this.http.put<Account>(this.accountsUrl+'/accounts/withdraw/',transaction);
+//   }
+//   public transferSender(transaction:Transactions){
+//     return this.http.put<Account>(this.accountsUrl+'/accounts/transferSender/',transaction);
+//   }
+//   public transferRecipient(transaction:Transactions){
+//     return this.http.put<Account>(this.accountsUrl+'/accounts/transferRecipient/',transaction);
+//   }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {
+        console.error(error);
+        console.log(`${operation} failed: ${error.message}`);
+        return of(result as T);
+    };
   }
-
-  getAccountTypes(): Observable<Accounttype[]> {
-    const url = `${this.apiUrl}/accounttype`;
-    this.http.get(url).subscribe(data => {
-        console.log(data);
-    });
-    return this.http.get<Accounttype[]>(url);
-  }
-
-private handleError<T>(operation = 'operation', result?: T) {
-  return (error: any): Observable<T> => {
-      console.error(error);
-      console.log(`${operation} failed: ${error.message}`);
-      return of(result as T);
-  };
-}
-
-  addAccount(account: Account): Observable<Account> {
-    return this.http.post<Account>(this.accountUrl, account, httpOptions).pipe(
-        tap((newAccount: Account) => console.log(`added account`)),
-        catchError(this.handleError<Account>('addAccount')));
-}
-
-  public deleteAccount(id: number): Observable<boolean>{
-    return this.http.delete<boolean>(this.apiUrl + "/api/accounts/" + id);
-  }
-
 
 }

@@ -17,9 +17,6 @@ export class UserService {
   private registerUrl: string = apiUrl+"/login";
   private getUserByEmail : string = apiUrl + "/login/users/";
   private getuserById: string = apiUrl + "/login/users/id/{id}"
-  isLoggedIn: BehaviorSubject<boolean> = new BehaviorSubject(false);
-  
-
 
 
   httpOptions = {
@@ -35,13 +32,6 @@ export class UserService {
         .setItem('userId', userData.userId)}));
     }
        
-  
-
-  //This ties in to the isLoggedIn Behavior Subject above
-  updateLoginStatus(status: boolean) {
-    this.isLoggedIn.next(status);
-    console.log(status);
-  }
 
   displayUser(): Observable<User>{
     return null

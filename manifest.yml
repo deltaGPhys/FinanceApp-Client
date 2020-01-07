@@ -1,7 +1,6 @@
 ---
 applications:
-  name: ZipWire
-  memory: 512M
-  disk_quota: 1024M
-  instances: 1
-  buildpack: staticfile_buildpack
+  - name: ZipWire
+    memory: 1G
+    instances: 1
+    buildpack: staticfile_buildpack

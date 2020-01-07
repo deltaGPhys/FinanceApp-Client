@@ -1,0 +1,43 @@
+<div class="container-header">
+    <h1>My Accounts</h1>
+</div>
+
+<div class="container">
+
+    <br>
+    <br>
+
+    <div class="row">
+        <a *ngFor="let account of accounts" routerLink="/accountsOverview/{{account.accountNumber}}">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                <div class="card card-stats" style="width: 14rem;">
+                    <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-icon">
+                            <i class="material-icons">content_copy</i>
+                        </div>
+                        <h3 class="card-title">{{account.accountName}}
+                        </h3>
+                        <p class="card-category">{{account.type}}</p>
+
+                        <small class="text"></small>
+                    </div>
+                    <div class="card-footer white" id="card-footer" style="height: 3rem;">
+
+                        <div id="colLeft">Balance:
+                        </div>
+                        <div id="colwrap">
+                            <div id="colRight">${{account.balance}}</div>
+                            <div id="colCenter" class="text-blue blue-darken 4"></div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+</div>
+<div class="container">
+
+    <button type="button" class="btn" routerLink="/addaccounts">Add Additional Accounts</button>
+</div>

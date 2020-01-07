@@ -16,7 +16,7 @@ import { LoginComponent } from './login/loginComponent/login.component';
 
 import { GoalsComponent } from './goals/goalsComponent/goals.component';
 
-import { AccountsComponent } from './accounts/accounts.component';
+import { AccountsComponent } from './account-list/account-list.component';
 
 import { InvestmentsComponent } from './investments/investments.component';
 import { InvestmentHeaderComponent } from './investments/investment-header/investment-header.component';
@@ -35,6 +35,9 @@ import { TransfersComponent } from './transfers/transfers/transfers.component';
 import { RegisterUserComponent } from './login/register-user/register-user.component';
 import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { AddAccountComponent } from './add-account/add-account.component';
+import { ExampleReportComponent } from './transactions/example-report/example-report.component';
+import { AccountFormComponent } from './account-form/account-form.component';
+import { AccountOverviewComponent } from './account-overview/account-overview.component';
 
 //import { DeleteAccountComponent } from './delete-account/delete-account.component';
 //import { AddAccountComponent } from './add-account/add-account.component';
@@ -58,7 +61,10 @@ import { AddAccountComponent } from './add-account/add-account.component';
     UserComponent,
     TransfersComponent,
     DeleteAccountComponent,
-    AddAccountComponent
+    AddAccountComponent,
+    ExampleReportComponent,
+    AccountFormComponent,
+    AccountOverviewComponent
   ],
   imports: [
     BrowserModule,

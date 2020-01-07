@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/loginComponent/login.component';
 import { GoalsComponent } from './goals/goalsComponent/goals.component';
-import { AccountsComponent } from './accounts/accounts.component';
+import { AccountsComponent } from './account-list/account-list.component';
 import { InvestmentsComponent } from './investments/investments.component';
 import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
 import { AddGoalComponent } from './goals/add-goal/add-goal.component';

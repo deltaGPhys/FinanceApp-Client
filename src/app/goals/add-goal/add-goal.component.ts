@@ -4,6 +4,7 @@ import {GoalServiceService} from '../../services/goal-service.service';
 import { Router } from '@angular/router';
 import{User} from '../../models/User';
 import { SavingGoal } from '../../models/Saving-goal.model';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-add-goal',
@@ -11,13 +12,14 @@ import { SavingGoal } from '../../models/Saving-goal.model';
   styleUrls: ['./add-goal.component.css']
 })
 export class AddGoalComponent implements OnInit {
-  private createSavingGoalForm : FormGroup;
+  createSavingGoalForm : FormGroup;
   private savingGoal: SavingGoal;
   private user: User;
   date: string;
 
-  constructor(private goalService: GoalServiceService, private router: Router) { 
+  constructor(private goalService: GoalServiceService, private router: Router, private loginService: LoginService) { 
     this.createSavingGoalForm = this.createFormGroup();
+    this.loginService.userToDisplay$.subscribe(data => this.user = data);
   }
 
   ngOnInit() {
@@ -51,7 +53,7 @@ export class AddGoalComponent implements OnInit {
         
       console.log(this.savingGoal);
 
-      this.goalService.getAllGoals().subscribe(data => (console.log(data)));      
+      this.goalService.getAllGoals(this.user.id).subscribe(data => (console.log(data)));      
 
       
 
