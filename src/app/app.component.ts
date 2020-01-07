@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { UserService } from './services/user-service.service'
-import { LoginService } from './services/login.service';
+import { UserService } from './services/user.service';
+import { User } from './models/User';
+
 
 
 @Component({
@@ -11,12 +12,12 @@ import { LoginService } from './services/login.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title: string = 'FinanceApp';
-  isLoggedIn: boolean;
+  title: string = 'ZipWire';
+  private currentUser: User;
   
 
-  constructor(private loginService: LoginService) {
-    this.loginService.isLoggedIn.subscribe(data => this.isLoggedIn = data);
+  constructor(private userService: UserService) {
+    this.userService.currentUser$.subscribe(data => {this.currentUser = data; console.log("user:",data);});
   }
 
   ngOnInit() {

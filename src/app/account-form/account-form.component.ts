@@ -12,13 +12,13 @@ import { Account } from '../models/Account'
 export class AccountFormComponent implements OnInit {
   
   account: Account;
+  accountType:Account;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private accountService: AccountService) {
-    this.account = new Account(id, balance, openingDate, accountNumber, accountType,  userId, acctName);
-  }
+    }
 
   onSubmit() {
     this.accountService.save(this.account).subscribe(data => this.gotoAccountsList());

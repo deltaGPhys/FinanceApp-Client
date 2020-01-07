@@ -1,19 +1,5 @@
-<div align='center'><h1>CRUD with Angular</h1></div>
+<div style="text-align:center"><h1>CRUD with Angular</h1></div>
 
 
-<table class ="table">
-  <tr *ngFor="let u of users">
-    <td>
-      {{u.id}}
-    </td>
-    <td>
-      {{u.name}}
-    </td>
-    <td>
-      {{u.age}}
-    </td>
-    <td>  
-      <button class= 'btn btn-info' (click)="updateUser()"> UPDATE DATA</button>
-    </td>
-  </tr>
-</table>
+{{currentUser.firstName}}<br>
+{{currentUser.lastName}}

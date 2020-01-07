@@ -26,17 +26,24 @@ export class AccountListComponent implements OnInit {
     accountTypes: Accounttype[];
     selectedAccountType: Accounttype;
     accountType: string;
-    accountTypeId: number;
+    accountNumber: number;
 
     constructor(private accountService: AccountService, private route: Router) {
     }
 
     ngOnInit() {
-        this.accountService.showAllChecking().subscribe(data => this.accounts = data);
-        this.accountService.showAllSavings().subscribe(data => this.accounts = data);
+        this.getUserAccounts();
 
     }
-    
-    
-    }
+    getUserAccounts()  {
 
+        this.accountService.getCheckingAccountsForUser(this.userId).subscribe(data => {this.account = data});
+            this.accountService.getSavingsAccountsForUser(this.userId).subscribe(data => {this.account = data;
+
+        });
+      }
+
+      onSelect(account: Account): void {
+        this.selectedAccount = account;
+      }
+    }

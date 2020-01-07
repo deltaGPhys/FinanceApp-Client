@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {GoalServiceService} from '../../services/goal-service.service';
+import { FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
+import { GoalServiceService } from '../../services/goal-service.service';
 import { Router } from '@angular/router';
-import{User} from '../../models/User';
+import{ User } from '../../models/User';
 import { SavingGoal } from '../../models/Saving-goal.model';
-import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-add-goal',
@@ -17,9 +17,9 @@ export class AddGoalComponent implements OnInit {
   private user: User;
   date: string;
 
-  constructor(private goalService: GoalServiceService, private router: Router, private loginService: LoginService) { 
+  constructor(private goalService: GoalServiceService, private router: Router, private userService: UserService) { 
     this.createSavingGoalForm = this.createFormGroup();
-    this.loginService.userToDisplay$.subscribe(data => this.user = data);
+    this.userService.currentUser$.subscribe(data => this.user = data);
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class AddGoalComponent implements OnInit {
         
       console.log(this.savingGoal);
 
-      this.goalService.getAllGoals(this.user.id).subscribe(data => (console.log(data)));      
+      this.goalService.getAllGoalsForUser(this.user.id).subscribe(data => (console.log(data)));      
 
       
 

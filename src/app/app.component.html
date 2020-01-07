@@ -8,7 +8,7 @@
       
     </div>
   </nav >
-  <ul class="nav nav-tabs" *ngIf="isLoggedIn">
+  <ul class="nav nav-tabs" *ngIf="currentUser.id">
     <li role="tab" data-toggle="tab" class="active"><a routerLink="/">Login</a></li>
     <li role="tab" data-toggle="tab"><a routerLink="/transactions">Trans (temp)</a></li>
     <li role="tab" data-toggle="tab"><a routerLink="/goals">Goals</a></li>

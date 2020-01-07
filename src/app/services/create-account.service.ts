@@ -52,19 +52,6 @@ export class CreateAccountService {
     return this.http.get(this.getAllUsersUrl, this.httpOptions).pipe(tap(data => console.log(data)), catchError(this.handleError<string>('getAllUsers')));
   }
 
-// allTheEmails(){
-//   return this.http.get(this.getEmailsUrl).subscribe(data => {this.data = data.results})
-
-// }
-
-
-
-// getUser(id:number):Observable<User>{
-
-// }
-
-//saveUser()
-
 /**
    * Handle Http operation that failed.
    * Let the app continue.

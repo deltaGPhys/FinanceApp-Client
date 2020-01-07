@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {SavingGoal} from '../../models/Saving-goal.model';
 import { GoalServiceService } from '../../services/goal-service.service';
 import { Observable } from 'rxjs';
-import { UserService } from 'src/app/services/user-service.service';
+import { UserService } from 'src/app/services/user.service';
+
 
 
 @Component({

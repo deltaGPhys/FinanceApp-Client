@@ -1,9 +1,9 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, BehaviorSubject, of } from 'rxjs';
-import { apiUrl } from './user-service.service';
 import { tap, catchError } from 'rxjs/operators';
 import { SavingGoal } from '../models/Saving-goal.model';
+import { environment } from 'src/environments/environment'; export const apiUrl = environment.apiUrl;
 
 @Injectable({
   providedIn: 'root'

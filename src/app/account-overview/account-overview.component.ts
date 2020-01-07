@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AccountService} from '../services/account-service';
 import{TransactionService} from '../services/transaction.service'
@@ -13,6 +13,7 @@ import { Account } from '../models/Account'
 export class AccountOverviewComponent implements OnInit {
 
   @Input() account: Account;
+  accounts:Account[];
   
 
   constructor(
@@ -20,7 +21,6 @@ export class AccountOverviewComponent implements OnInit {
     private router: Router,
     private accountService: AccountService,
     private transactionService:TransactionService,
-    private transactions:TransactionListByAccountComponent
   ){}
 
   ngOnInit() {
@@ -29,15 +29,15 @@ export class AccountOverviewComponent implements OnInit {
     
   }
   getChecking(): void {
-    this.transactions.getTransactions();
+    this.transactionService.getTransactions();
     const id = +this.route.snapshot.paramMap.get('accountId');
-    this.accountService.getCheckingAccount(id).subscribe(account => this.account = account)
+    this.accountService.getCheckingAccount(id).subscribe(accounts => this.accounts = accounts)
   }
 
   getSavings(): void {
-    this.transactions.getTransactions();
+    this.transactionService.getTransactions();
     const id = +this.route.snapshot.paramMap.get('accountId');
-    this.accountService.getSavingsAccount(id).subscribe(account => this.account = account)
+    this.accountService.getSavingsAccount(id).subscribe(accounts => this.accounts = accounts)
   }
   remove(id: Number) {
     this.accountService.closeChecking(id).subscribe(data => { this.gotoAccountsList() });

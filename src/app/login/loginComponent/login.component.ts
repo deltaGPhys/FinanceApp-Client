@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
-import { LoginService} from 'src/app/services/login.service';
 import { CreateAccountService } from '../../services/create-account.service'
 import { User } from '../../models/User';
 import { Router } from '@angular/router';
 import { delay, subscribeOn } from 'rxjs/operators';
 import { Observable, of, BehaviorSubject } from 'rxjs';
-import { UserService } from '../../services/user-service.service';
+import { UserService } from 'src/app/services/user.service';
+import { PriceHistory } from 'src/app/models/PriceHistory';
 
 
 @Component({
@@ -19,17 +19,12 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   public userEmail: string;
   private userPassword: string;
-  private userEmails: any;
-  private allEmails: string[] = [];
   myUser : User;
   invalidLogin: boolean = false;
-  //notLoggedIn: boolean = true;
 
-  public constructor(private loginService: LoginService, private userService: UserService, private createAccountService : CreateAccountService, private router : Router) {
+  public constructor(private userService: UserService, private createAccountService : CreateAccountService, private router : Router) {
     this.loginForm = this.createFormGroup();
-    this.userEmails = this.createAccountService.getAllEmails()
-    .subscribe(value => {this.allEmails = value; console.log(this.allEmails);});;
-   }  
+  }
 
   ngOnInit() {
   }
@@ -46,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginTest(): void {
-    this.loginService.updateLoginStatus(true);
+    this.userService.updateCurrentUser(new User(999, "Testy", "Default", "test@aol.com", "", 1200, 60000));
   }
   
   onSubmit()  {
@@ -54,22 +49,18 @@ export class LoginComponent implements OnInit {
     this.userPassword = this.loginForm.controls.password.value;
     console.log(this.userEmail);
     console.log(this.userPassword);
-    if(this.validUserName(this.allEmails, this.userEmail)){
-      this.loginService.verifyUser(this.userEmail,this.userPassword)
-          .subscribe(data => {this.loginService.updateLoginStatus(true); this.loginService.updateLoggedInUser(data); console.log(data);});
-      this.loginService.findUserByEmail(this.userEmail)
-          .subscribe(info =>{this.myUser = info; console.log("Saved User: " + this.myUser);});
-      
     
-
-      this.router.navigate(['/accounts']);
-
-      //this.loggedIn=true;
-    }
-    else {
-      this.invalidLogin = true;
-      this.router.navigate(['']);
-    }
+    this.userService.verifyUser(this.userEmail,this.userPassword)
+        .subscribe(data => {
+          if (data == null) {
+            this.invalidLogin = true;
+            this.revert();
+          } else {
+            this.userService.updateCurrentUser(data);
+            this.router.navigate(['/accounts']);
+          }
+        });
+    
   }
   validUserName (allEmails, userEmail) : boolean {
     for (let i = 0; i < allEmails.length; i++){
@@ -79,10 +70,5 @@ export class LoginComponent implements OnInit {
     }
     return false;
   }
-
-  // static getUser() {
-  //   const myUser = this.loginForm.controls.email.value;
-  //   return [myUser];
-  //  }
 
 }

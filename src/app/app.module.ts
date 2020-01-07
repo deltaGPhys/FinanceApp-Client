@@ -11,7 +11,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { TransactionService } from './services/transaction.service';
 import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
 
-import { LoginService } from './services/login.service';
 import { LoginComponent } from './login/loginComponent/login.component';
 
 import { GoalsComponent } from './goals/goalsComponent/goals.component';
@@ -38,6 +37,8 @@ import { AddAccountComponent } from './add-account/add-account.component';
 import { ExampleReportComponent } from './transactions/example-report/example-report.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
+
+import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
 
 //import { DeleteAccountComponent } from './delete-account/delete-account.component';
 //import { AddAccountComponent } from './add-account/add-account.component';
@@ -74,8 +75,9 @@ import { AccountOverviewComponent } from './account-overview/account-overview.co
     FormsModule,
     ReactiveFormsModule,
     ChartsModule,
+    RxReactiveFormsModule,
   ],
-  providers: [TransactionService, LoginService, GoalServiceService, Title],
+  providers: [TransactionService, GoalServiceService, Title],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
