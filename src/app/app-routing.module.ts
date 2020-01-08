@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/loginComponent/login.component';
 import { GoalsComponent } from './goals/goalsComponent/goals.component';
-import { AccountsComponent } from './account-list/account-list.component';
+import { AccountListComponent } from './account-list/account-list.component';
 import { InvestmentsComponent } from './investments/investments.component';
 import { TransactionFormComponent } from './transactions/transaction-form/transaction-form.component';
 import { AddGoalComponent } from './goals/add-goal/add-goal.component';
@@ -17,7 +17,7 @@ const routes: Routes = [
     { path: '', component: LoginComponent },
     { path: 'transactions', component: TransactionListComponent },
     { path: 'goals', component: GoalsComponent },
-    { path: 'accounts', component: AccountsComponent },
+    { path: 'accounts', component: AccountListComponent },
     { path: 'transfers', component: TransfersComponent },
     { path: 'investments', component: InvestmentsComponent },
     { path: 'register', component: RegisterUserComponent },

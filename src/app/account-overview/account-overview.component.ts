@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AccountService} from '../services/account-service';
 import{TransactionService} from '../services/transaction.service'
-import { Account } from '../models/Account'
+import { Account } from '../models/account'
 
 
 @Component({

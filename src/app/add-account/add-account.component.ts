@@ -25,7 +25,7 @@ export class AddAccountComponent implements OnInit {
 
   makeNewAccount(){
     console.log("button pressed");
-    this.accountService.createAccount(this.newBalance, +this.currentUser.id, this.acctName).subscribe(
+    this.accountService.createChecking(this.createdAccount).subscribe(
       account => this.createdAccount = account
       );
   }

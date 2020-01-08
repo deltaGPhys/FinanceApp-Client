@@ -1,20 +1,11 @@
 export class Account {
+    dtype:string;
     id: number;
+    acct_name:string;
     balance : number;
     openingDate : Date;
-    accountNumber: number;
-    accountType: string
-    userid: number;
-    acctName : string;
+    rate:number;
+    owner_id: number;
+    goal_id:number;
 
-    constructor(id:number, balance:number, openingDate:Date, accountNumber: number, accountType:string,  userId: number, acctName:string){
-        this.id = id;
-        this.balance = balance;
-        this.openingDate = openingDate;
-        this.accountNumber = accountNumber;
-        this.accountType = accountType;
-        this.userid = userId;
-        this.acctName = acctName;
-      
-    }
 }

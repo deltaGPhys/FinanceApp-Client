@@ -10,16 +10,15 @@ import { User } from '../models/User';
 
 
 @Component({
-    selector: 'app-accounts',
+    selector: 'app-account-list',
     templateUrl: './account-list.component.html',
     styleUrls: ['./account-list.component.css']
 })
 export class AccountListComponent implements OnInit {
-    private user: User;
-
+    private user: User = new User(1,"Jim","Jones","aol@aol.com","salty",1000.0,2000.0);
+    
     date:Date;
-    @Input('userId') userId: number;
-    accounts: Account[];
+    accounts: any = []
     selectedAccount: Account;
     createAccount: boolean;
     account: Account;
@@ -27,6 +26,7 @@ export class AccountListComponent implements OnInit {
     selectedAccountType: Accounttype;
     accountType: string;
     accountNumber: number;
+    showAccounts: Accounttype[];
 
     constructor(private accountService: AccountService, private route: Router) {
     }
@@ -37,10 +37,8 @@ export class AccountListComponent implements OnInit {
     }
     getUserAccounts()  {
 
-        this.accountService.getCheckingAccountsForUser(this.userId).subscribe(data => {this.account = data});
-            this.accountService.getSavingsAccountsForUser(this.userId).subscribe(data => {this.account = data;
-
-        });
+        this.accountService.getAccountsByUserId(1).subscribe(data => {this.accounts = data});
+            this.accountService.getSavingsAccountsForUser(1).subscribe(data => {this.accounts = data;});
       }
 
       onSelect(account: Account): void {

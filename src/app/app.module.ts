@@ -15,7 +15,7 @@ import { LoginComponent } from './login/loginComponent/login.component';
 
 import { GoalsComponent } from './goals/goalsComponent/goals.component';
 
-import { AccountsComponent } from './account-list/account-list.component';
+import { AccountListComponent } from './account-list/account-list.component';
 
 import { InvestmentsComponent } from './investments/investments.component';
 import { InvestmentHeaderComponent } from './investments/investment-header/investment-header.component';
@@ -32,16 +32,13 @@ import { UserComponent } from './user/user.component';
 import { TransfersComponent } from './transfers/transfers/transfers.component';
 
 import { RegisterUserComponent } from './login/register-user/register-user.component';
-import { DeleteAccountComponent } from './delete-account/delete-account.component';
 import { AddAccountComponent } from './add-account/add-account.component';
 import { ExampleReportComponent } from './transactions/example-report/example-report.component';
 import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
+import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
+import { AccountComponent } from './account/account.component';
 
-import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
-
-//import { DeleteAccountComponent } from './delete-account/delete-account.component';
-//import { AddAccountComponent } from './add-account/add-account.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +47,7 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
     TransactionViewComponent,
     LoginComponent,
     GoalsComponent,
-    AccountsComponent,
+    AccountListComponent,
     InvestmentsComponent,
     TransactionFormComponent,
     InvestmentHeaderComponent,
@@ -61,11 +58,11 @@ import {  RxReactiveFormsModule } from "@rxweb/reactive-form-validators"
     AddGoalComponent,
     UserComponent,
     TransfersComponent,
-    DeleteAccountComponent,
     AddAccountComponent,
     ExampleReportComponent,
     AccountFormComponent,
-    AccountOverviewComponent
+    AccountOverviewComponent,
+    AccountComponent
   ],
   imports: [
     BrowserModule,
