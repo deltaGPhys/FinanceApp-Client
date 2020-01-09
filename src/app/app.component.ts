@@ -13,7 +13,7 @@ import { User } from './models/User';
 })
 export class AppComponent {
   title: string = 'ZipWire';
-  private currentUser: User;
+  currentUser: User;
   
 
   constructor(private userService: UserService) {

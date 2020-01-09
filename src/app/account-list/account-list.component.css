@@ -12,8 +12,8 @@
 }
 
 .card-footer {
-    background: rgb(29, 196, 0);
-    background: linear-gradient(90deg, rgba(29, 196, 0, 1) 0%, rgba(152, 255, 166, 1) 0%, rgba(193, 255, 183, 1) 36%, rgba(139, 255, 156, 1) 79%, rgba(61, 255, 118, 1) 100%);
+    background: rgb(216, 228, 214);
+    background: linear-gradient(90deg, rgb(225, 233, 223) 0%, rgb(211, 224, 213) 0%, rgb(217, 224, 216) 36%, rgb(207, 214, 208) 79%, rgb(225, 240, 230) 100%);
     display: inline-block;
     border-bottom-left-radius: 28px;
     border-bottom-right-radius: 25px;

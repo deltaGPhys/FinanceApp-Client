@@ -17,6 +17,7 @@ export class AccountService {
   accountsUrl: string = apiUrl+"/accounts";
   accounts:BehaviorSubject<any> = new BehaviorSubject<any>([]);
   selectedAccounts:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  currentUser$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -25,27 +26,30 @@ export class AccountService {
   
   constructor(private http:HttpClient) { 
   }
+  public getAllAccounts():Observable<Account[]>{
+    return this.http.get<Account[]>(this.accountsUrl + '/accounts');
+  }
 
   public getCheckingAccount(userId:number): Observable<Account[]> {
-    return this.http.get<Account[]>(this.accountsUrl +'/checking/' + userId);
+    return this.http.get<Account[]>(this.accountsUrl +'/checking/' + this.currentUser$);
   }
   public getSavingsAccount(userId:number): Observable<Account[]> {
-    return this.http.get<Account[]>(this.accountsUrl +'/savings/' + userId);
+    return this.http.get<Account[]>(this.accountsUrl +'/savings/' + this.currentUser$);
   }
 
   public showAllChecking(accountNumber:number): Observable<Account[]> {
-    return this.http.get<Account[]>(this.accountsUrl +'/checkingForUser/' + accountNumber);
+    return this.http.get<Account[]>(this.accountsUrl +'/checkingForUser/' + this.currentUser$);
   }
 
   public showAllSavings(accountNumber:number): Observable<Account[]> {
-    return this.http.get<Account[]>(this.accountsUrl +'/savingsForUser/' + accountNumber);
+    return this.http.get<Account[]>(this.accountsUrl +'/savingsForUser/' + this.currentUser$);
   }
   public getCheckingAccountsForUser(userId: number): Observable<Account> {
-    return this.http.get<Account>(this.accountsUrl + '/checkingByUser/' + userId);
+    return this.http.get<Account>(this.accountsUrl + '/checkingByUser/' + this.currentUser$);
   }
 
   public getSavingsAccountsForUser(userId: number): Observable<Account> {
-    return this.http.get<Account>(this.accountsUrl + '/savingsByUser/' + userId);
+    return this.http.get<Account>(this.accountsUrl + '/savingsByUser/' + this.currentUser$);
   }
  
   public save(accounts: Account) {

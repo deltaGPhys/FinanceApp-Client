@@ -14,6 +14,8 @@ export class AccountOverviewComponent implements OnInit {
 
   @Input() account: Account;
   accounts:Account[];
+  acctName:string;
+  accountType:string;
   
 
   constructor(
@@ -30,17 +32,19 @@ export class AccountOverviewComponent implements OnInit {
   }
   getChecking(): void {
     this.transactionService.getTransactions();
-    const id = +this.route.snapshot.paramMap.get('accountId');
+    const id = +this.route.snapshot.paramMap.get('/checking/accountId');
     this.accountService.getCheckingAccount(id).subscribe(accounts => this.accounts = accounts)
   }
 
   getSavings(): void {
     this.transactionService.getTransactions();
-    const id = +this.route.snapshot.paramMap.get('accountId');
+    const id = +this.route.snapshot.paramMap.get('/savings/accountId');
     this.accountService.getSavingsAccount(id).subscribe(accounts => this.accounts = accounts)
   }
-  remove(id: Number) {
-    this.accountService.closeChecking(id).subscribe(data => { this.gotoAccountsList() });
+  removeChecking(id: Number) {
+    this.accountService.closeChecking(id).subscribe(data => { this.gotoAccountsList() });}
+    
+  removeSaving(id:Number) {
     this.accountService.closeSavings(id).subscribe(data => { this.gotoAccountsList() });
 
   }
