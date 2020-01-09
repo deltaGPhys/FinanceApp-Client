@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
   }
 
   loginTest(): void {
-    this.userService.updateCurrentUser(new User(999, "Testy", "Default", "test@aol.com", "", 1200, 60000));
+    this.userService.updateCurrentUser(new User(1, "Testy", "Default", "test@aol.com", "", 1200, 60000));
   }
   
   onSubmit()  {
