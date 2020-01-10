@@ -1,32 +1,36 @@
 
-<h2>My Savings Goals</h2>
+<div class="container">
+    <div class="box" style="margin-top:10px; width:100%;">
+    <h2>My Savings Goals</h2>
 
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Goal Amount</th>
-            <th>Goal Account</th>
-            <th>End Date</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let goal of allGoals; let i = index">
-            <td>{{i + 1}}</td>
-            <td>{{goal.goalAmount | currency}}</td>
-            <td>{{goal.account}}</td>
-            <td>{{goal.endDate | date : 'shortDate'}} </td>
-            <td>{{goal.description}}</td>
-        </tr>
-    </tbody>
-    <p *ngIf=""></p>
-</table>
+        <table class="table table-striped">
+            <thead style="font-size: medium; color:#fff;">
+                <tr>
+                    <th>#</th>
+                    <th>Goal Amount</th>
+                    <th>Goal Account</th>
+                    <th>End Date</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let goal of allGoals; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{goal.goalAmount | currency}}</td>
+                    <td>{{goal.account}}</td>
+                    <td>{{goal.endDate | date : 'shortDate'}} </td>
+                    <td>{{goal.description}}</td>
+                </tr>
+            </tbody>
+            <p *ngIf=""></p>
+        </table>
 
-    <div>
-        Want to Create a new Saving Goal?
-    <p>
-        <a class="btn btn-primary" routerLink="/createGoal" role="button">Click Here!</a>
-    </p>
+            <div>
+                Want to Create a new Saving Goal?
+            <p>
+                <a class="btn btn-primary" routerLink="/createGoal" role="button">Click Here!</a>
+            </p>
+        </div>
     </div>
+</div>
 
