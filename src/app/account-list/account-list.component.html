@@ -1,3 +1,4 @@
+<!-- <link rel="stylesheet" href="account-list.component.css"> -->
 <div class="container-header">
     <h1>My Accounts</h1>
 </div>
@@ -16,8 +17,6 @@
 
                 <th>Number: </th>
 
-                <!--<th>Account Type: </th> -->
-
                 <th>Name: </th>
 
                 <th>Balance: </th>
@@ -34,10 +33,13 @@
             let even = even;
 
             let odd = odd" [ngClass]="{ odd: odd, even: even }">
+                <style>
+                    td {
+                        color: antiquewhite
+                    }
+                </style>
 
                 <td>{{ i+1 }}</td>
-
-                <!-- <td>{{ account.dtype }}</td> -->
 
                 <td>{{ account.acctName }}</td>
 
