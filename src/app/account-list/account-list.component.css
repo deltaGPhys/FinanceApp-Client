@@ -90,3 +90,11 @@ hr {
     margin-top: 10px;
     margin-bottom: 0px;
 }
+
+.odd {
+    background-color: beige;
+}
+
+.even {
+    background-color: aquamarine;
+}

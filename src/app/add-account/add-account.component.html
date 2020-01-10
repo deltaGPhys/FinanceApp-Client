@@ -16,7 +16,10 @@
                 <input [(ngModel)]="acctName" type="text" placeholder="Account AcctName" class="form-control" aria-label="acctName" name="account-acctName">
             </div>
             <div style="margin-top: 2%;">
-                <button class="col-md-6 offset-md-3 btn btn-primary" type="button" (click)="makeNewAccount()" [disabled]="!newBalance">Create Account</button>
+                <button class="col-md-6 offset-md-3 btn btn-primary" type="button" (click)="makeNewCheckingAccount()" [disabled]="!newBalance">Create Account</button>
+            </div>
+            <div style="margin-top: 2%;">
+                <button class="col-md-6 offset-md-3 btn btn-primary" type="button" (click)="makeNewSavingsAccount()" [disabled]="!newBalance">Create Account</button>
             </div>
         </form>
 

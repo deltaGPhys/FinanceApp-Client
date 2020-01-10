@@ -22,7 +22,7 @@ export class AccountListComponent implements OnInit {
   private user: User;
 
   date: Date;
-  accounts: any = [];
+  accounts: Account[];
   selectedAccount: Account;
   createAccount: boolean;
   account: Account;
@@ -32,22 +32,25 @@ export class AccountListComponent implements OnInit {
   accountNumber: number;
   showAccounts: Accounttype[];
   currentUser: User;
+  userAccountsDisplayed : boolean = false;
+  allAccounts : Account[];
 
-  constructor(private accountService: AccountService,
-    private userService: UserService,
-    private route: Router) {
+  constructor(private accountService: AccountService, private userService: UserService, private route: Router) {
+    this.userService.currentUser$.subscribe(data => {this.currentUser = data});
+    this.accountService.accounts$.subscribe(data => this.accounts = data);
+    //this.accountService.
   }
 
   ngOnInit() { 
-
-    this.getUserAccounts();
-
   }
-  getUserAccounts() {
-    // this.accountService.getAllAccounts().subscribe(data => {this.accounts = data});
-    this.userService.currentUser$.subscribe(data => {this.currentUser = data});
-    this.accountService.getAccountsByUserId(this.currentUser.id).subscribe(data => { this.accounts = data });
-    //this.accountService.getSavingsAccountsForUser(this.currentUser.id).subscribe(data => { this.accounts = data; });
+ 
+  displayData(){
+    this.userAccountsDisplayed = true;
+    console.log(this.currentUser.id);
+    this.accountService.getAccountsByUserId(this.currentUser.id)
+        .subscribe(data => {this.accountService.updateAllAccounts(data); 
+          console.log(data);
+          this.allAccounts = data});
   }
 
   onSelect(account: Account): void {

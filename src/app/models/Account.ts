@@ -1,7 +1,7 @@
 export class Account {
     dtype:string;
     id: number;
-    acct_name:string;
+    acctName:string;
     balance : number;
     openingDate : Date;
     rate:number;
