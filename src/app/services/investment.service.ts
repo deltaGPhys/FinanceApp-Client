@@ -93,7 +93,6 @@ export class InvestmentService {
 
     /** GET Account from the server for user*/
     getAccountForUser (userId): Observable<Investment> {
-      console.log("GET FOR USER,", userId, this.investmentUrl+"user/"+userId);
       return this.http.get<Investment>(this.investmentUrl+"user/"+userId, this.httpOptions)
           .pipe(
               tap(data => console.log('fetched InvAcct', data)),

@@ -26,28 +26,28 @@ export class AccountOverviewComponent implements OnInit {
   ){}
 
   ngOnInit() {
-    this.getChecking();
-    this.getSavings();
+    // this.getChecking();
+    // this.getSavings();
     
   }
-  getChecking(): void {
-    this.transactionService.getTransactions();
-    const id = +this.route.snapshot.paramMap.get('/checking/accountId');
-    this.accountService.getCheckingAccount(id).subscribe(accounts => this.accounts = accounts)
-  }
+  // getChecking(): void {
+  //   this.transactionService.getTransactions();
+  //   const id = +this.route.snapshot.paramMap.get('/checking/accountId');
+  //   this.accountService.getCheckingAccount(id).subscribe(accounts => this.accounts = accounts)
+  // }
 
-  getSavings(): void {
-    this.transactionService.getTransactions();
-    const id = +this.route.snapshot.paramMap.get('/savings/accountId');
-    this.accountService.getSavingsAccount(id).subscribe(accounts => this.accounts = accounts)
-  }
-  removeChecking(id: Number) {
-    this.accountService.closeChecking(id).subscribe(data => { this.gotoAccountsList() });}
+  // getSavings(): void {
+  //   this.transactionService.getTransactions();
+  //   const id = +this.route.snapshot.paramMap.get('/savings/accountId');
+  //   this.accountService.getSavingsAccount(id).subscribe(accounts => this.accounts = accounts)
+  // }
+  // removeChecking(id: Number) {
+  //   this.accountService.closeChecking(id).subscribe(data => { this.gotoAccountsList() });}
     
-  removeSaving(id:Number) {
-    this.accountService.closeSavings(id).subscribe(data => { this.gotoAccountsList() });
+  // removeSaving(id:Number) {
+  //   this.accountService.closeSavings(id).subscribe(data => { this.gotoAccountsList() });
 
-  }
+  // }
   gotoAccountsList() {
     this.router.navigateByUrl('accounts');
   }
