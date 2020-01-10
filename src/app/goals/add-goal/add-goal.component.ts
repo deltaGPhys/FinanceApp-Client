@@ -42,7 +42,7 @@ export class AddGoalComponent implements OnInit {
     let savingGoal : SavingGoal = new SavingGoal (
       null,
       this.createSavingGoalForm.controls.goalAmount.value,
-      null,
+      this.user.id,
       null,
       this.createSavingGoalForm.controls.endDate.value,
       this.createSavingGoalForm.controls.description.value,

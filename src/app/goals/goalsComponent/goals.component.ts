@@ -3,6 +3,7 @@ import {SavingGoal} from '../../models/Saving-goal.model';
 import { GoalServiceService } from '../../services/goal-service.service';
 import { Observable } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { User } from 'src/app/models/User';
 
 
 
@@ -13,11 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class GoalsComponent implements OnInit {
  
-  goals: SavingGoal;
-  //allUserGoals : any;
-  userId : number;
-  //getUser();
-
+  currentUser: User;
   allGoals: SavingGoal[];
   
 
@@ -25,12 +22,10 @@ export class GoalsComponent implements OnInit {
     this.goalService.savingGoals$.subscribe(data => this.allGoals = data);
     this.userService.currentUser$
       .subscribe(data => {
-        
-        if (data != null) {
-          this.userId = data.id; 
-          this.goalService.getAllGoalsForUser(this.userId)
-            .subscribe(data => this.goalService.savingGoals$.next(data));
-        }
+          this.currentUser = data; 
+          console.log("USER",data);
+          this.goalService.getAllGoalsForUser(this.currentUser.id)
+            .subscribe(data => {console.log("DATA",data);this.goalService.savingGoals$.next(data);});
       });
     
     // this.goalService.getAllGoalsForUser(this.id)
