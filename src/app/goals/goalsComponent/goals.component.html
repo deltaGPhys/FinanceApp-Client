@@ -13,8 +13,11 @@
                     <th>Description</th>
                 </tr>
             </thead>
-            <tbody style="color:#fff;">
-                <tr *ngFor="let goal of allGoals; let i = index">
+            <tbody style="color:#fff; ">
+                <tr *ngFor="let goal of allGoals; let i = index;
+                let even = even;
+    
+                let odd = odd" [ngClass]="{ odd: odd, even: even }">
                     <td>{{i + 1}}</td>
                     <td>{{goal.goalAmount | currency}}</td>
                     <td>{{goal.account}}</td>

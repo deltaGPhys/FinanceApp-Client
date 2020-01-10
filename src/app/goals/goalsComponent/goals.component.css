@@ -1,0 +1,28 @@
+h1 {
+    color: #fff;
+    
+}
+
+.odd {
+    text-decoration-color: blanchedalmond;
+    background-color: rgba(0, 123, 255, 0.3);
+    font-size: medium;
+}
+
+.even {
+    text-decoration-color: black;
+    background-color: rgba(0, 123, 255, 0.3);
+    font-size: medium;
+}
+
+tbody.td.odd {
+    color: rgb(10, 10, 10);
+}
+
+tbody.td.even {
+    color: blanchedalmond;
+}
+
+::ng-deep td {
+    font-size: small;
+}

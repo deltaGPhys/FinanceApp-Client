@@ -24,7 +24,7 @@ export class GoalsComponent implements OnInit {
       .subscribe(data => {
           this.currentUser = data; 
           console.log("USER",data);
-          this.goalService.getAllGoalsForUser(this.currentUser.id)
+          this.goalService.getAllGoals() //Todo - owner account setting is an issue
             .subscribe(data => {console.log("DATA",data);this.goalService.savingGoals$.next(data);});
       });
     
