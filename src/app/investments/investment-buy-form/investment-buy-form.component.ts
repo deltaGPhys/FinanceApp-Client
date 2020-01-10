@@ -4,7 +4,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { InvestmentService } from 'src/app/services/investment.service';
 
 import { SecurityHolding } from 'src/app/models/SecurityHolding';
-import { Account } from 'src/app/models/account';
+import { Account } from 'src/app/models/Account';
 
 
 @Component({

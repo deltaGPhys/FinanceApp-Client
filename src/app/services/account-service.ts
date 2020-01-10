@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
-import { Account } from '../models/account';
+import { Account } from '../models/Account';
 import { environment } from 'src/environments/environment'; export const apiUrl = environment.apiUrl;
 import{TransactionService} from '../services/transaction.service'
 import { catchError, tap } from 'rxjs/operators';

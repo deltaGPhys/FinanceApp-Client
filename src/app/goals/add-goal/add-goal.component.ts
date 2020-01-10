@@ -51,9 +51,8 @@ export class AddGoalComponent implements OnInit {
       this.goalService.addGoal(savingGoal)
         .subscribe(data => {this.savingGoal = data;});
         
-      console.log(this.savingGoal);
 
-      this.goalService.getAllGoalsForUser(this.user.id).subscribe(data => (console.log(data)));      
+      this.goalService.getAllGoalsForUser(this.user.id).subscribe(data => this.goalService.savingGoals$.next(data));      
 
       
 

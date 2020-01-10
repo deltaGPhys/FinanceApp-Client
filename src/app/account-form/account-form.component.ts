@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {AccountService} from '../services/account-service';
-import { Account } from '../models/account'
+import { Account } from '../models/Account'
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import{AddAccountService} from '../services/add-account.service'
 

@@ -22,6 +22,17 @@ export class GoalsComponent implements OnInit {
   
 
   constructor(private goalService: GoalServiceService, private userService: UserService) { 
+    this.goalService.savingGoals$.subscribe(data => this.allGoals = data);
+    this.userService.currentUser$
+      .subscribe(data => {
+        
+        if (data != null) {
+          this.userId = data.id; 
+          this.goalService.getAllGoalsForUser(this.userId)
+            .subscribe(data => this.goalService.savingGoals$.next(data));
+        }
+      });
+    
     // this.goalService.getAllGoalsForUser(this.id)
     //     .subscribe(value => {this.allGoals = value; console.log(this.allGoals);});;
     
@@ -30,8 +41,8 @@ export class GoalsComponent implements OnInit {
     
     //this.goalService.updateSavingsGoals(this.userId);
 
-    this.goalService.getAllGoals()
-    .subscribe(value => {this.allGoals = value; console.log(this.allGoals);});;
+    // this.goalService.getAllGoals()
+    // .subscribe(value => {this.allGoals = value; console.log(this.allGoals);});;
 
   
   }
