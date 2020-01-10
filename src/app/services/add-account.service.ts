@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from 'src/environments/environment';import { Observable, of } from 'rxjs';
+import { environment } from 'src/environments/environment';import { Observable, of, BehaviorSubject } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
  export const apiUrl = environment.apiUrl;
 
@@ -28,6 +28,7 @@ addCheckingAccount(account:Account):Observable<Account>{
 addSavingsAccount(account:Account):Observable<Account>{
   return this.http.post<Account>(this.createSavingsUrl, account, this.httpOptions).pipe(tap(data => console.log(data)), catchError(this.handleError<Account>('addSavingsAccount')));
 }
+
 
 /**
    * Handle Http operation that failed.

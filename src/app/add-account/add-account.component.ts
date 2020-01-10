@@ -23,11 +23,17 @@ export class AddAccountComponent implements OnInit {
     this.userService.currentUser$.subscribe(data => this.currentUser = data);
   }
 
-  makeNewAccount(){
+  makeNewCheckingAccount(){
     console.log("button pressed");
     this.accountService.createChecking(this.createdAccount).subscribe(
       account => this.createdAccount = account
       );
+  }
+
+  makeNewSavingsAccount(){
+    console.log("button pressed");
+    this.accountService.createSavings(this.createdAccount).subscribe(
+      account => this.createdAccount = account);
   }
 
 }

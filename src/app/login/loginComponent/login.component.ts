@@ -39,26 +39,25 @@ export class LoginComponent implements OnInit {
   revert() {
     this.loginForm.reset();
   }
-
-  loginTest(): void {
-    this.userService.updateCurrentUser(new User(999, "Testy", "Default", "test@aol.com", "", 1200, 60000));
-  }
   
   onSubmit()  {
     this.userEmail = this.loginForm.controls.email.value;
     this.userPassword = this.loginForm.controls.password.value;
-    // console.log(this.userEmail);
-    // console.log(this.userPassword);
+     console.log(this.userEmail);
+     console.log(this.userPassword);
     
     this.userService.verifyUser(this.userEmail,this.userPassword)
-        .subscribe(data => {
-          if (data == null) {
-            this.invalidLogin = true;
-            this.revert();
-          } else {
-            this.userService.updateCurrentUser(data);
-            this.router.navigate(['/investments']);
-          }
+        .subscribe(data => {this.userService.updateCurrentUser(data);
+          console.log("user" , data);
+          this.router.navigate(['/accounts']);
+          //   this.router.navigate(['/investments']);
+          // if (data == null) {
+          //   this.invalidLogin = true;
+          //   this.revert();
+          // } else {
+          //   this.userService.updateCurrentUser(data);
+          //   
+          // }
         });
     
   }

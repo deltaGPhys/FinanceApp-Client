@@ -1,4 +1,41 @@
-<div class="container">
+<form [formGroup]="createAccountForm" (ngSubmit)="onSubmitOfSavings(createAccountForm)">
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputFirstName">Account Name:</label>
+            <input type="text" formControlName="acctName" class="form-control" id="acctName" required placeholder="First">
+            <div *ngIf="acctName.errors?.pattern">Account name not valid</div>
+            <div *ngIf="acctName.errors?.required">Account name required</div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputInitial ">Initial Deposit:</label>
+            <input type="text" formControlName="balance" class="form-control" id="balance" required placeholder="Last">
+            <div *ngIf="balance.errors?.pattern">balance not valid</div>
+            <div *ngIf="balance.errors?.required">balance required</div>
+        </div>
+    </div>
+
+
+    <form [formGroup]="createAccountForm" (ngSubmit)="onSubmitOfChecking(createAccountForm)">
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputFirstName">Account Name:</label>
+                <input type="text" formControlName="acctName" class="form-control" id="acctName" required placeholder="First">
+                <div *ngIf="acctName.errors?.pattern">Account name not valid</div>
+                <div *ngIf="acctName.errors?.required">Account name required</div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputInitial ">Initial Deposit:</label>
+                <input type="text" formControlName="balance" class="form-control" id="balance" required placeholder="Last">
+                <div *ngIf="balance.errors?.pattern">balance not valid</div>
+                <div *ngIf="balance.errors?.required">balance required</div>
+            </div>
+        </div>
+
+
+
+        <!-- <div class="container">
     <h6>Add a new account to track here.</h6>
     <div class="card my-5">
         <div class="card-body">
@@ -21,4 +58,4 @@
             </form>
         </div>
     </div>
-</div>
+</div> -->
