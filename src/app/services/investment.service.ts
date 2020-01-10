@@ -91,13 +91,14 @@ export class InvestmentService {
       this.histChange.next(data);
     }
 
-    /** GET Account from the server */
-    getAccount (id): Observable<Investment> {
-        return this.http.get<Investment>(this.investmentUrl+id)
-            .pipe(
-                tap(_ => console.log('fetched InvAcct')),
-                catchError(this.handleError<Investment>('getAcct'))
-            );
+    /** GET Account from the server for user*/
+    getAccountForUser (userId): Observable<Investment> {
+      console.log("GET FOR USER,", userId, this.investmentUrl+"user/"+userId);
+      return this.http.get<Investment>(this.investmentUrl+"user/"+userId, this.httpOptions)
+          .pipe(
+              tap(data => console.log('fetched InvAcct', data)),
+              catchError(this.handleError<Investment>('getAcct'))
+          );
     }
 
     /** GET Securities from the server */

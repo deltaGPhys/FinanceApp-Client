@@ -29,7 +29,7 @@ export class InvestmentsComponent implements OnInit {
 
   ngOnInit() {
     console.log("investments init");
-    this.investmentService.getAccount(27)
+    this.investmentService.getAccountForUser(1)
       .subscribe(account => {
         this.account = account; 
       });
