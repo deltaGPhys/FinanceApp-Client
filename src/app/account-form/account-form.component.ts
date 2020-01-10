@@ -16,9 +16,10 @@ export class AccountFormComponent implements OnInit {
   account: Account;
   accountType:Account;
   createAccountForm: FormGroup;
-  
+  userAcctName: string = "";
+  updateCurrentAccount: Account;
 
-  constructor(private route: ActivatedRoute, private accountService: AccountService) {
+  constructor(private route: ActivatedRoute, private router: Router, private accountService: AccountService) {
       this.createAccountForm = this.createFormGroup();
     } 
     
@@ -45,13 +46,29 @@ export class AccountFormComponent implements OnInit {
       return this.createAccountForm.get('balance');
     }
 
+    onSubmitOfSavings() {
+        console.log(this.createAccountForm);
+        let account: Account = new Account();
+        this.accountService.addSavingsAccount(account)
+          .subscribe(data => { 
+            this.account = data;
+            this.accountService.updateCurrentAccount(this.account);
+            this.revert();
+            }
+          );
+    }
  
- 
- onSubmit() {
-    // this.accountService.save(this.account).subscribe(data => this.gotoAccountsList());
+    onSubmitOfChecking() {
+      console.log(this.createAccountForm);
+      let account: Account = new Account();
+      this.accountService.addCheckingAccount(account)
+        .subscribe(data => { 
+          this.account = data;
+          this.accountService.updateCurrentAccount(this.account);
+          this.revert();
+          }
+        );
+    }
 
-  }
-  // gotoAccountsList() {
-  //   this.router.navigateByUrl('accounts');
-  // }
+  
 }

@@ -4,6 +4,7 @@ import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { Account } from '../models/account';
 import { environment } from 'src/environments/environment'; export const apiUrl = environment.apiUrl;
 import{TransactionService} from '../services/transaction.service'
+import { catchError, tap } from 'rxjs/operators';
 
 
 @Injectable({providedIn: 'root'})
@@ -16,8 +17,10 @@ export class AccountService {
   @Inject(apiUrl) private apiUrl: string;
   accountsUrl: string = apiUrl+"/accounts";
   accounts:BehaviorSubject<any> = new BehaviorSubject<any>([]);
-  selectedAccounts:BehaviorSubject<any> = new BehaviorSubject<any>([]);
+  selectedAccounts$:BehaviorSubject<any> = new BehaviorSubject<any>([]);
   currentUser$: BehaviorSubject<any> = new BehaviorSubject([]);
+  private createCheckingUrl: string = apiUrl+"/accounts/checkingCreated";
+  private createSavingsUrl: string = apiUrl+"/accounts/savingsCreated";
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -85,6 +88,20 @@ export class AccountService {
   public getAccountsByUserId(id:number){
     return this.http.get<Account[]>(this.accountsUrl+'/userAccounts/'+id);
   }
+
+  updateCurrentAccount(account:Account) {
+    console.log(account);
+    this.selectedAccounts$.next(account);
+  }
+
+  addCheckingAccount(account:Account):Observable<Account>{
+    return this.http.post<Account>(this.createCheckingUrl, account, this.httpOptions).pipe(tap(data => console.log(data)), catchError(this.handleError<Account>('addCheckingAccount')));
+  }
+  
+  addSavingsAccount(account:Account):Observable<Account>{
+    return this.http.post<Account>(this.createSavingsUrl, account, this.httpOptions).pipe(tap(data => console.log(data)), catchError(this.handleError<Account>('addSavingsAccount')));
+  }
+  
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
