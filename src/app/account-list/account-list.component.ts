@@ -47,7 +47,7 @@ export class AccountListComponent implements OnInit {
     // this.accountService.getAllAccounts().subscribe(data => {this.accounts = data});
     this.userService.currentUser$.subscribe(data => {this.currentUser = data});
     this.accountService.getAccountsByUserId(this.currentUser.id).subscribe(data => { this.accounts = data });
-    this.accountService.getSavingsAccountsForUser(this.currentUser.id).subscribe(data => { this.accounts = data; });
+    //this.accountService.getSavingsAccountsForUser(this.currentUser.id).subscribe(data => { this.accounts = data; });
   }
 
   onSelect(account: Account): void {

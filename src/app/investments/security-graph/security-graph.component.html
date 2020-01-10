@@ -1,28 +1,29 @@
 <div *ngIf="chartData">
-<div *ngIf="priceHistory">
-    <h3>{{selectedStock.symbol}}</h3>
-    <ng-template [ngIf]="dataStartDate != null" [ngIfElse]="default">
-      <p>Price history since purchase date ({{dataStartDate}})</p>
-    </ng-template>
-    <ng-template #default>
-      <p>Price history for previous year</p>
-    </ng-template>
-
-  <div class="flex">
-      <div class="flex-item">
-        <div style="display: block;">
-          <canvas baseChart width="400" height="400"
-            [datasets]="lineChartData"
-            [labels]="lineChartLabels"
-            [options]="lineChartOptions"
-            [colors]="lineChartColors"
-            [chartType]="lineChartType"
-            [plugins]="lineChartPlugins"
-            (chartHover)="chartHovered($event)">
-          </canvas>
+  <div *ngIf="priceHistory">
+      <h3>{{selectedStock.symbol}}</h3>
+      <ng-template [ngIf]="dataStartDate != null" [ngIfElse]="default">
+        <p>Price history since purchase date ({{dataStartDate}})</p>
+      </ng-template>
+      <ng-template #default>
+        <p>Price history for previous year</p>
+      </ng-template>
+  
+    <div class="flex">
+        <div class="flex-item">
+          <div style="display: block;">
+            <canvas baseChart width="400" height="145"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [chartType]="lineChartType"
+              
+              (chartHover)="chartHovered($event)">
+            </canvas>
+          </div>
         </div>
-      </div>
+    </div>
   </div>
-</div>
-</div>
-
+  </div>
+  
+  

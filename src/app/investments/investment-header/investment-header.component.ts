@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Investment } from 'src/app/models/Investment';
 import { InvestmentService } from 'src/app/services/investment.service';
+import { PortfolioValues } from 'src/app/models/portfolio-values';
 
 
 @Component({
@@ -11,14 +12,20 @@ import { InvestmentService } from 'src/app/services/investment.service';
 export class InvestmentHeaderComponent implements OnInit {
 
   @Input() account: Investment; 
-  portfolioValues: Object = this.investmentService.portValsChange.getValue();
+  portfolioValues: PortfolioValues = this.investmentService.portValsChange.getValue();
+  infoWindow: string;
 
   constructor(private investmentService: InvestmentService) { 
     this.investmentService.portValsChange.subscribe(value => {this.portfolioValues = value;console.log(value);});
+    this.investmentService.infoWindow$.subscribe(value => this.infoWindow = value);
   }
 
   ngOnInit() {
     
+  }
+
+  toggleDisplay(view: string) {
+    this.investmentService.toggleDisplay(view);
   }
 
   

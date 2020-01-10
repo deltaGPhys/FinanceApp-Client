@@ -13,7 +13,9 @@ export class UserService {
 
   @Inject(apiUrl) private apiUrl: string;
   private loginUrl : string = apiUrl +"/login";
+  private updateUserProfileUrl: string = apiUrl + "/dashboard/user/update"; 
   currentUser$: BehaviorSubject<any> = new BehaviorSubject([]);
+  isEmailAvailable$: BehaviorSubject<any> = new BehaviorSubject([]);
 
   httpOptions = {
     headers: new HttpHeaders({'Content-Type' : 'application/json'})
@@ -32,13 +34,25 @@ export class UserService {
 
   checkEmailAvailability(email: string): Observable<boolean> {
     let reqData: Object = {"email": email};
-    return this.http.post<boolean>(this.loginUrl+"/checkEmail", reqData, this.httpOptions)
-      .pipe(tap(data => console.log(data)));
+    return this.http.post<boolean>(this.loginUrl+"/checkEmail", reqData, this.httpOptions);
+      //.pipe(tap(data => console.log(data)));
   }
   
   updateCurrentUser(user : User) {
-    console.log(user);
+    console.log("user update in service",user);
     this.currentUser$.next(user);
+  }
+
+  // updateUserProfile(user: User): Observable<User>{
+  //   //console.log(apiUrl);
+  //   //console.log(this.registerUrl);
+  //   return this.http.post<User>(this.registerUrl, user, this.httpOptions).pipe(tap(data => console.log(data)), catchError(this.handleError<User>('addUser')));
+  // }
+  
+  updateUserProfile(user: User) :Observable<User>{
+    //let reqData: Object = {"id": userId, "firstName": firstName, "lastName": lastName};
+    return this.http.post<User>(this.updateUserProfileUrl, user, this.httpOptions)
+        .pipe(tap(data => {console.log(data);catchError(this.handleError<User>('updateProfile', null))}));
   }
 
 /**

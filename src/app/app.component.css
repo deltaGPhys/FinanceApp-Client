@@ -1,0 +1,33 @@
+.pill {
+    background-color:rgba(0,123,255,0.6);
+    
+    font-size: medium;
+}
+
+.pill {
+    background-color: rgba(38,97,40,0.5);
+    color:#fff;
+}
+
+.router-link-active{
+    color:#fff;
+    background-color: rgba(0,123,255,0.3);
+}
+
+
+.navbar {
+    background-color: rgba(0,123,255,0.3);
+}
+
+.mainWindow {
+    background-color: rgba(0,123,255,0.3); 
+    border-top: 0px; 
+    max-width: 100%; 
+    height: calc(100vh - 110px); 
+    padding-right: 0px !important;
+}
+
+.col-md-8 {
+    padding-left:0px;
+}
+

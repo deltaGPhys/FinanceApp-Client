@@ -8,3 +8,21 @@
 .modal-body {
     overflow-y: auto !important;
 }
+
+body {
+    background-image: url(assets/images/bgLogo.jpg); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
+.box {
+    border:1px black solid; 
+    border-radius:5px;
+    
+    padding: 15px; 
+    color: #fff;
+    background-color: rgb(100, 156, 139); 
+    box-shadow: 0 0 5px 5px rgba(0,61,124,0.3);
+
+}

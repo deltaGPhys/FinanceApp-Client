@@ -28,7 +28,6 @@ import { TransactionViewComponent } from './transactions/transaction-view/transa
 import { AddGoalComponent } from './goals/add-goal/add-goal.component';
 import { GoalServiceService } from './services/goal-service.service';
 import { TransactionListComponent } from './transactions/transaction-list/transaction-list.component';
-import { UserComponent } from './user/user.component';
 import { TransfersComponent } from './transfers/transfers/transfers.component';
 
 import { RegisterUserComponent } from './login/register-user/register-user.component';
@@ -38,6 +37,8 @@ import { AccountFormComponent } from './account-form/account-form.component';
 import { AccountOverviewComponent } from './account-overview/account-overview.component';
 import {RxReactiveFormsModule} from '@rxweb/reactive-form-validators';
 import { AccountComponent } from './account/account.component';
+import { UpdateUserComponent } from './user/update-user/update-user.component';
+import { UserComponent } from './user/user/user.component';
 
 
 @NgModule({
@@ -56,13 +57,14 @@ import { AccountComponent } from './account/account.component';
     InvestmentBuyFormComponent,
     SecurityGraphComponent,
     AddGoalComponent,
-    UserComponent,
     TransfersComponent,
     AddAccountComponent,
     ExampleReportComponent,
     AccountFormComponent,
     AccountOverviewComponent,
-    AccountComponent
+    AccountComponent,
+    UpdateUserComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

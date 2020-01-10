@@ -16,7 +16,7 @@ export class TransactionListComponent implements OnInit {
 
   closeResult: string;
   transactions: Transaction[];
-  transTypes: Observable<string[]>;
+  transTypes: string[];
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -25,13 +25,14 @@ export class TransactionListComponent implements OnInit {
 
   constructor(private transactionService: TransactionService, private modalService: NgbModal) { 
     this.transactions = this.transactionService.transactions;
+    this.transactionService.transTypes$.subscribe(data => this.transTypes = data);
   }
 
 
   ngOnInit() {
     this.transactionService.getTransactions().subscribe(transactions => this.transactions = transactions);
     
-    this.transTypes = this.transactionService.transTypes;
+    
   }
 
   openScrollableContent(transactionReport) {

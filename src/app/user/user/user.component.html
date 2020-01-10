@@ -1,0 +1,22 @@
+<p>user works!</p>
+
+<h2>User Information</h2>
+<a (click)="toggleDisplay('portfolio')"><span style="font-size:small; color:#ccc">(Portfolio <span class="glyphicon glyphicon-stats"></span>)</span></a><br><br>
+
+<div class = "userInfo" *ngIf="currentUser; else noUser">
+    <label>First Name:</label> {{currentUser.firstName}}<br>
+    
+    <label>Last Name:</label> {{currentUser.lastName}}  <br>
+
+    <label>Email:</label> {{currentUser.email}} <br>
+
+    <label>Password:</label> ******** <br>
+
+</div>
+
+<ng-template #noUser>
+    <h1>*Please Log In To View Your User Details</h1>
+</ng-template>
+
+
+<a (click)="toggleDisplay('editInfo')"><span style="font-size:small; color:#ccc">(Edit Info <span class="glyphicon glyphicon-edit"></span>)</span></a>

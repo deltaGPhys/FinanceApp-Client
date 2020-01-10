@@ -6,7 +6,7 @@
         <input id="comment" type="text" formControlName="comment"><br>
         <select class="form-control" 
         formControlName="type" required>
-            <option *ngFor="let transactionType of transTypes | async"
+            <option *ngFor="let transactionType of transTypes"
             [value]=transactionType>
             {{ transactionType }}
             </option>  
