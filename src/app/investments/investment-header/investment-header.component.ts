@@ -13,13 +13,19 @@ export class InvestmentHeaderComponent implements OnInit {
 
   @Input() account: Investment; 
   portfolioValues: PortfolioValues = this.investmentService.portValsChange.getValue();
+  infoWindow: string;
 
   constructor(private investmentService: InvestmentService) { 
     this.investmentService.portValsChange.subscribe(value => {this.portfolioValues = value;console.log(value);});
+    this.investmentService.infoWindow$.subscribe(value => this.infoWindow = value);
   }
 
   ngOnInit() {
     
+  }
+
+  toggleDisplay(view: string) {
+    this.investmentService.toggleDisplay(view);
   }
 
   

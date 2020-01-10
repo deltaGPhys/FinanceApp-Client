@@ -2,8 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Security } from 'src/app/models/Security';
 import { FormGroup, FormControl } from '@angular/forms';
 import { InvestmentService } from 'src/app/services/investment.service';
-import { Account } from 'src/app/models/account';
+
 import { SecurityHolding } from 'src/app/models/SecurityHolding';
+import { Account } from 'src/app/models/account';
 
 
 @Component({

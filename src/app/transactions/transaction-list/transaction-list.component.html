@@ -1,51 +1,25 @@
-<p>transaction-list-test works!</p>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mainModal">
-    Add Transaction
-  </button>
-  <app-transaction-form
-  [transTypes]="transTypes"
-  [(transactions)]="transactions">
-  </app-transaction-form>
-  <br>
 
-
-  <button class="btn btn-outline-primary mb-2 mr-2" (click)="openScrollableContent(transactionReport)">View transactions</button>
-
-<ng-template #transactionReport let-modal class="transactionModalClass">
-    <div class="modal-header">
-      <h4 class="modal-title">Transactions</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <div class="list-group-item flex-column align-items-start" *ngFor="let transaction of transactions" style="width:465px; display: inline-block; text-align: left;">
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1">{{transaction.dateCreated | date: 'shortDate'}} 
-              <ng-template [ngIf]="transaction.amount > 0" [ngIfElse]="debit">
-                  <span style="color:#0a720a">+{{transaction.amount | currency}}</span>
-              </ng-template>
-              <ng-template #debit>
-                  <span style="color:#a11414">{{transaction.amount | currency}}</span>
-              </ng-template> 
-              {{transaction.type}}
-            </h5>
-            <h4>
-              <ng-template [ngIf]="transaction.accountBalance > 0" [ngIfElse]="negative">
-                  {{transaction.accountBalance | currency}}
-              </ng-template>
-                <ng-template #negative>
-                    <span style="color:#a11414">{{transaction.accountBalance | currency}}</span>
-                </ng-template> 
-                  
-              </h4>
-            </div>
+  <div class="list-group-item flex-column align-items-start" *ngFor="let transaction of transactions" style="width:465px; display: inline-block; text-align: left;">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{transaction.dateCreated | date: 'shortDate'}} 
+        <ng-template [ngIf]="transaction.amount > 0" [ngIfElse]="debit">
+            <span style="color:#0a720a">+{{transaction.amount | currency}}</span>
+        </ng-template>
+        <ng-template #debit>
+            <span style="color:#a11414">{{transaction.amount | currency}}</span>
+        </ng-template> 
+        {{transaction.type}}
+      </h5>
+      <h4>
+        <ng-template [ngIf]="transaction.accountBalance > 0" [ngIfElse]="negative">
+            {{transaction.accountBalance | currency}}
+        </ng-template>
+          <ng-template #negative>
+              <span style="color:#a11414">{{transaction.accountBalance | currency}}</span>
+          </ng-template> 
             
-            <small>{{transaction.comment}}</small>
-          </div>
+        </h4>
+      </div>
+      
+      <small>{{transaction.comment}}</small>
     </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-light" (click)="modal.close('Close click')">Close</button>
-    </div>
-  </ng-template>
-  

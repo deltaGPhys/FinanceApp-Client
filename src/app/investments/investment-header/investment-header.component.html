@@ -1,4 +1,5 @@
 <h2>Your Investment Portfolio</h2>
+<a (click)="toggleDisplay('userInfo')"><span style="font-size:small; color:#ccc">(User Info <span class="glyphicon glyphicon-user"></span>)</span></a>
     <div *ngIf="portfolioValues.current">
         <h3>{{portfolioValues.current | currency}}</h3>
     </div>

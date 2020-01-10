@@ -1,9 +1,9 @@
 import { Component, OnInit} from '@angular/core';
 import{User} from '../../models/User';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {CreateAccountService} from '../../services/create-account.service'
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
+import { CreateAccountService } from 'src/app/services/create-account.service';
 
 
 @Component({

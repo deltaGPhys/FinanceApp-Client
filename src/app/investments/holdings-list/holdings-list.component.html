@@ -1,28 +1,27 @@
 
 <ngb-accordion [closeOthers]="true" >
-    <ngb-panel id="static-{{holding.id}}" *ngFor="let holding of holdings">
-        <ng-template ngbPanelTitle style="width:100%;" >
-            <!-- <div class="card title" style="width:100%;"> -->
-                <span style="float:left;" (click)="selectedPanel(holding)">{{holding.security.symbol}} ({{holding.security.name}})</span> 
-            <!-- </div> -->
-        </ng-template>
-        <ng-template ngbPanelContent>
-            <label>Shares Held</label>: {{holding.numShares}}<br>
-            <label>Purchased on</label>: {{holding.purchaseDate | date: 'shortDate'}}<br>
-            <label>Purchase Value</label>: {{holding.purchaseValue | currency}} ({{holding.purchaseCost | currency}}/share)<br>
-            <label>Current Position Value</label>: {{holding.value | currency}} ({{holding.security.currentPrice | currency}}/share)<br>
-            <label>Activity</label>: 
-            <ng-template [ngIf]="holding.security.dayChange > 0" [ngIfElse]="loss">
-              +{{holding.security.dayChange | currency}}/share ({{holding.security.changePct}}%)<span style="color:#0a720a" class="glyphicon glyphicon-arrow-up"></span>
-            </ng-template>
-            <ng-template #loss>
-              {{holding.security.dayChange | currency}}/share ({{holding.security.changePct}}%)<span style="color:#a11414" class="glyphicon glyphicon-arrow-down" ></span>
-            </ng-template>
-            <br>
-
-            <button type="button" class="btn btn-primary" (click)="sellHolding(holding.id)">
-              Liquidate Position
-            </button>
-        </ng-template>
-    </ngb-panel>
+  <ngb-panel id="static-{{holding.id}}" *ngFor="let holding of holdings">
+      <ng-template ngbPanelTitle style="width:100%;" >  
+        <span style="float:left;" (click)="selectedPanel(holding)">{{holding.security.symbol}} ({{holding.security.name}})</span> 
+      </ng-template>
+      <ng-template ngbPanelContent >
+        <div class="info">
+          <label>Shares Held</label>: {{holding.numShares}}<br>
+          <label>Purchased on</label>: {{holding.purchaseDate | date: 'shortDate'}}<br>
+          <label>Purchase Value</label>: {{holding.purchaseValue | currency}} ({{holding.purchaseCost | currency}}/share)<br>
+          <label>Current Position Value</label>: {{holding.value | currency}} ({{holding.security.currentPrice | currency}}/share)<br>
+          <label>Activity</label>: 
+          <ng-template [ngIf]="holding.security.dayChange > 0" [ngIfElse]="loss">
+            +{{holding.security.dayChange | currency}}/share ({{holding.security.changePct}}%)<span style="color:#0a720a" class="glyphicon glyphicon-arrow-up"></span>
+          </ng-template>
+          <ng-template #loss>
+            {{holding.security.dayChange | currency}}/share ({{holding.security.changePct}}%)<span style="color:#a11414" class="glyphicon glyphicon-arrow-down" ></span>
+          </ng-template>
+          <br>
+        </div>
+          <button type="button" class="btn btn-primary" (click)="sellHolding(holding.id)">
+            Liquidate Position
+          </button>
+      </ng-template>
+  </ngb-panel>
 </ngb-accordion>
