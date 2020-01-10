@@ -1,30 +1,31 @@
-<p>add-goal works!</p>
+<div class="container" style="text-align:center;">
+  <div class="box" style="margin-top:10px; margin-left: auto; margin-right: auto; width:35%; text-align:left;">
 
-<form [formGroup]="createSavingGoalForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="createSavingGoalForm" (ngSubmit)="onSubmit()">
 
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label for="inputGoalAmount">Amount to Save:</label>
-        <!-- Goal amount needs to be greater than 0 -->
-        <input type="text" formControlName = "goalAmount" class="form-control" id="goalAmount" required placeholder="Goal Amount">
-      </div>
-      <div class="form-group col-md-6">
-        <label for="inputEndDate">End Date:</label>
-        <input type="Date" formControlName = "endDate" class="form-control" id="endDate" required placeholder="End Date">
-      </div>
-    </div>  
-    
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputGoalAmount">Amount to Save:</label>
+            <!-- Goal amount needs to be greater than 0 -->
+            <input type="text" formControlName = "goalAmount" class="form-control" id="goalAmount" required placeholder="Goal Amount" style="width:100px;">
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputEndDate">End Date:</label>
+            <input type="Date" formControlName = "endDate" class="form-control" id="endDate" required placeholder="End Date" style="width:125px;">
+          </div>
+        </div>  
+        
 
-    <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputDescrption">Description:</label>
-          <input type="text" formControlName = "description"class="form-control" id="description" required placeholder="Description">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputDescrption">Description:</label>
+              <input type="text" formControlName = "description"class="form-control" id="description" required placeholder="Description" style="width:270px;">
+            </div>
         </div>
-        </div>
-       
- 
-     <div class="form-group col-md-6">
-      <button type="submit" class="btn btn-primary" >Create Saving Goal</button>
-    </div>
+        
+        <button type="submit" class="btn btn-primary" >Create Saving Goal</button>
+        
     </form>
+  </div>
+</div>
   
