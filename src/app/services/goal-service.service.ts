@@ -30,7 +30,7 @@ export class GoalServiceService {
   addGoal(savingGoal: SavingGoal): Observable<SavingGoal>{
     console.log(apiUrl);
     console.log(this.addGoalUrl);
-    return this.http.post<SavingGoal>(this.addGoalUrl, savingGoal, this.httpOptions)
+    return this.http.post<SavingGoal>(this.addGoalUrl+"/"+savingGoal.owner, savingGoal, this.httpOptions)
             .pipe(tap(data => console.log(data)), catchError(this.handleError<SavingGoal>('addSavingGoal')));
   }
 
